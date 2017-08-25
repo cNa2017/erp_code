@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="ui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="ui/themes/icon.css">
+<script type="text/javascript" src="ui/jquery.min.js"></script>
+<script type="text/javascript" src="ui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="ui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="ui/jquery.serializejson.min.js"></script>
+<script type="text/javascript" src="js/crud.js"></script>
+<script type="text/javascript">
+	var name ="dep";
+	var columns = [ [
+			{field : 'uuid',title : '编号',width : 100},
+			{field : 'name',title : '名称',width : 100},
+			{field : 'tele',title : '电话',width : 100},
+			{field : '-',title : '操作',width : 100,formatter : function(value, row, index) {
+					var oper = '<a href="javascript:void(0);" onclick="edit('
+							+ row.uuid + ')" >修改</a>';
+					oper += ' <a href="javascript:void(0);" onclick="del('
+							+ row.uuid + ')" >删除</a>';
+					return oper;
+				}
+			} ] ];
+</script>
+</head>
+<body>
+	<form id="searchForm">
+		部门名称：
+		<input name="t1.name" />
+		部门电话：
+		<input name="t1.tele" />
+		<button id="btnSearch" type="button">查询</button>
+		<button type="button" onclick="getData()">getData</button>
+
+	</form>
+	<table id="grid"></table>
+	<div id="editDlg" style="padding: 4px;">
+		<!-- <form id="editForm" action="dep_add" method="post"> -->
+		<form id="editForm">
+			<input type="hidden" name="t.uuid" />
+			部门名称：
+			<input name="t.name" />
+			<div style="height: 2px;"></div>
+			部门电话：
+			<input name="t.tele" />
+		</form>
+	</div>
+</body>
+</html>
